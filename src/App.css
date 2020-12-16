@@ -1,3 +1,129 @@
+:root {
+  --very-dark-gray: hsl(0, 0%, 17%);
+  --dark-gray: hsl(0, 0%, 59%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+.App {
+  height: 100vh;
+  text-align: center;
+  padding-top: 40px;
+  font-size: 18px;
+  font-family: "Rubik", sans-serif;
+  position: relative;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.ipInfoContainer {
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px 0;
+  border-radius: 20px;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -60px;
+  box-shadow: 0 50px 50px -25px rgba(0, 0, 0, 0.15);
+}
+
+.infoLabel {
+  color: var(--dark-gray);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+.info {
+  color: var(--very-dark-gray);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.separator {
+  width: 1px;
+  height: 65px;
+  background-color: rgb(223, 223, 223);
+  margin-right: -20px;
+}
+
+.search {
+  margin: 30px auto;
+}
+
+.search input {
+  display: inline-block;
+  width: 40%;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-radius: 10px 0 0 10px;
+  margin: 0 auto;
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  padding: 20px;
+  color: var(--very-dark-gray);
+  cursor: pointer;
+  vertical-align: top;
+}
+
+::placeholder {
+  color: var(--dark-gray);
+}
+
+button {
+  background-color: black;
+  color: white;
+  outline: none;
+  border: none;
+  height: 50px;
+  border-radius: 0 10px 10px 0;
+  padding: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--very-dark-gray);
+}
+
+.map {
+  width: 100%;
+  height: 80vh;
+}
+
 #map {
-  height: 200px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .ipInfoContainer {
+    width: 70%;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ipInfo {
+    margin: 10px;
+  }
+
+  .separator {
+    display: none;
+  }
 }

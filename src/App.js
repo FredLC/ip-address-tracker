@@ -14,18 +14,22 @@ function App() {
   const getUserPosition = () => {
     if ("geolocation" in navigator) {
       setUserAuthorization(true);
-      console.log("Available");
       fetch("https://api.ipify.org/?format=json")
         .then((res) => res.json())
         .then((data) => setAddress(data.ip));
     } else {
       setUserAuthorization(false);
-      console.log("Not Available");
     }
   };
 
   const handleUserInput = (e) => {
     setAddress(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      getApiData();
+    }
   };
 
   const getApiData = async () => {
@@ -34,7 +38,6 @@ function App() {
       setIp(ipData.data.ip);
       setLocation(ipData.data.location);
       setIsp(ipData.data.isp);
-      console.log(ipData);
     } catch (err) {
       alert(
         "Please enter a valid IP address or domain name. e.g 93.184.216.34 or example.com"
@@ -48,19 +51,48 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        background: `url('${process.env.PUBLIC_URL}/img/pattern-bg.png')`,
+      }}
+    >
       {userAuthorization ? (
         <div>
           <h1>IP Address Tracker</h1>
-          <input
-            onChange={handleUserInput}
-            type="text"
-            placeholder="Search for any IP address or domain"
-          />
-          <button onClick={getApiData}>SEARCH</button>
-          <div>{ip}</div>
-          <div>
-            {location.city}, {location.region}, {location.timezone}, {isp}
+          <div className="search">
+            <input
+              onChange={handleUserInput}
+              onKeyPress={handleKeyPress}
+              type="text"
+              placeholder="Search for any IP address or domain"
+            />
+            <button onClick={getApiData}>
+              <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div className="ipInfoContainer">
+            <div className="ipInfo">
+              <p className="infoLabel">IP ADDRESS</p>
+              <p className="info">{ip}</p>
+            </div>
+            <div className="separator"></div>
+            <div className="ipInfo">
+              <p className="infoLabel">LOCATION</p>
+              <p className="info">
+                {location.city + ", "} {location.region}
+              </p>
+            </div>
+            <div className="separator"></div>
+            <div className="ipInfo">
+              <p className="infoLabel">TIMEZONE</p>
+              <p className="info">UTC {location.timezone}</p>
+            </div>
+            <div className="separator"></div>
+            <div className="ipInfo">
+              <p className="infoLabel">ISP</p>
+              <p className="info">{isp}</p>
+            </div>
           </div>
           <Map
             center={[
