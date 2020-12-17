@@ -4,16 +4,13 @@ import Map from "./Map";
 import "./App.css";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      address: "",
-      userAuthorization: false,
-      ip: "",
-      location: {},
-      isp: "",
-    };
-  }
+  state = {
+    address: "",
+    userAuthorization: false,
+    ip: "",
+    location: {},
+    isp: "",
+  };
 
   getUserPosition = () => {
     if ("geolocation" in navigator) {
