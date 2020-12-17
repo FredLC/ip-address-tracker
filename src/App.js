@@ -87,24 +87,27 @@ class App extends React.Component {
             <div className="ipInfoContainer">
               <div className="ipInfo">
                 <p className="infoLabel">IP ADDRESS</p>
-                <p className="info">{ip}</p>
+                <p className="info">{ip ? ip : "-"}</p>
               </div>
               <div className="separator"></div>
               <div className="ipInfo">
                 <p className="infoLabel">LOCATION</p>
                 <p className="info">
-                  {location.city + ", "} {location.region}
+                  {location.city ? location.city + ", " : "-"}
+                  {location.region ? location.region : "-"}
                 </p>
               </div>
               <div className="separator"></div>
               <div className="ipInfo">
                 <p className="infoLabel">TIMEZONE</p>
-                <p className="info">UTC {location.timezone}</p>
+                <p className="info">
+                  {location.timezone ? "UTC" + location.timezone : "-"}
+                </p>
               </div>
               <div className="separator"></div>
               <div className="ipInfo">
                 <p className="infoLabel">ISP</p>
-                <p className="info">{isp}</p>
+                <p className="info">{isp ? isp : "-"}</p>
               </div>
             </div>
             <Map
